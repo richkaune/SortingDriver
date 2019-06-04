@@ -6,6 +6,9 @@
  * @version 4.0 
  */
 public class Sorting 
+
+        // put comparison variable here declared static
+        // declare start and end variables for currentTimeMillis() and/or nanos (for Merge and Quick sorts)
 {
 	/**
 	 * Sorts the specified array of integers using the selection
