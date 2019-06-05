@@ -6,10 +6,12 @@
  * @version 4.0 
  */
 public class Sorting 
-
-        // put comparison variable here declared static
-        // declare start and end variables for currentTimeMillis() and/or nanos (for Merge and Quick sorts)
 {
+        
+        static int comparisons = 0;
+        
+        // declare start and end variables for currentTimeMillis() and/or nanos (for Merge and Quick sorts)
+    
 	/**
 	 * Sorts the specified array of integers using the selection
 	 * sort algorithm.
@@ -21,16 +23,21 @@ public class Sorting
 	{
 		int min;
 		T temp;
-
+                comparisons = 0;
+                
 		for (int index = 0; index < data.length - 1; index++)
 		{
 			min = index;
 			for (int scan = index + 1; scan < data.length; scan++)
 				if (data[scan].compareTo(data[min]) < 0)
-					min = scan;
+                                {
+                                    comparisons ++;
+                                    min = scan;
+                                }
 
 			swap(data, min, index);
 		}
+                
 	}
 
 	/**
@@ -57,16 +64,19 @@ public class Sorting
 	public static <T extends Comparable<T>> 
 	void insertionSort(T[] data)
 	{
+                comparisons = 0;
 		for (int index = 1; index < data.length; index++)
 		{
 			T key = data[index];
 			int position = index;
+                        
 
 			// shift larger values to the right 
 			while (position > 0 && data[position-1].compareTo(key) > 0)
 			{
-				data[position] = data[position - 1];
-				position--;
+                            comparisons ++;
+                            data[position] = data[position - 1];
+                            position--;
 			}
 
 			data[position] = key;
@@ -83,13 +93,17 @@ public class Sorting
 	void bubbleSort(T[] data)
 	{
 		int position, scan;
-
+                comparisons = 0;
+                
 		for (position =  data.length - 1; position >= 0; position--)
 		{
 			for (scan = 0; scan <= position - 1; scan++)
 			{
 				if (data[scan].compareTo(data[scan + 1]) > 0)
-					swap(data, scan, scan + 1);
+                                {
+                                    comparisons ++;
+                                    swap(data, scan, scan + 1);
+                                }
 			}
 		}
 	}
@@ -102,6 +116,7 @@ public class Sorting
 	public static <T extends Comparable<T>> 
 	void quickSort(T[] data)
 	{
+                comparisons = 0;
 		quickSort(data, 0, data.length - 1);
 	}
 
@@ -118,6 +133,7 @@ public class Sorting
 	{
 		if (min < max)
 		{
+                        
 			// create partitions
 			int indexofpartition = partition(data, min, max);
 
@@ -156,11 +172,16 @@ public class Sorting
 		{
 			// search for an element that is > the partition element
 			while (left < right && data[left].compareTo(partitionelement) <= 0)
-				left++;
+                        {
+                            //comparisons ++;
+                            left++;
+                        }
 
 			// search for an element that is < the partition element
 			while (data[right].compareTo(partitionelement) > 0)
-				right--;
+                        {
+                            right--;
+                        }
 
 			// swap the elements
 			if (left < right)
@@ -182,6 +203,7 @@ public class Sorting
 	public static <T extends Comparable<T>>
 	void mergeSort(T[] data)
 	{
+                comparisons =0;
 		mergeSort(data, 0, data.length - 1);
 	}
 
@@ -229,12 +251,13 @@ public class Sorting
 		{
 			if (data[first1].compareTo(data[first2]) < 0)
 			{
+                                //comparisons ++;
 				temp[index] = data[first1];
 				first1++;
 			}
 			else
 			{
-				temp[index] = data[first2];
+                                temp[index] = data[first2];
 				first2++;
 			}
 			index++;
