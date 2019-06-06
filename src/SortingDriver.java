@@ -43,35 +43,35 @@ public class SortingDriver
             
             start = System.currentTimeMillis(); // get starting time
             Sorting.selectionSort(selectionData);
-            end = System.currentTimeMillis(); // get starting time
+            end = System.currentTimeMillis(); // get ending time
             elapsed = end - start;
             System.out.println("Selection elapsed time is " + elapsed + " ms");
             System.out.println("Comparisons are " + Sorting.comparisons);
             
             start = System.currentTimeMillis(); // get starting time
             Sorting.insertionSort(insertionData);
-            end = System.currentTimeMillis(); // get starting time
+            end = System.currentTimeMillis(); // get ending time
             elapsed = end - start;
             System.out.println("Insertion elapsed time is " + elapsed + " ms");
             System.out.println("Comparisons are " + Sorting.comparisons);
                       
             start = System.currentTimeMillis(); // get starting time
             Sorting.bubbleSort(bubbleData);
-            end = System.currentTimeMillis(); // get starting time
+            end = System.currentTimeMillis(); // get ending time
             elapsed = end - start;
             System.out.println("Bubble elapsed time is " + elapsed + " ms");
             System.out.println("Comparisons are " + Sorting.comparisons);
             
             start = System.nanoTime(); // get starting time
             Sorting.quickSort(quickData);
-            end = System.nanoTime(); // get starting time
+            end = System.nanoTime(); // get ending time
             elapsed = (end - start)/1000000;
             System.out.println("Quick elapsed time is " + elapsed + " ms");
             System.out.println("Comparisons are " + Sorting.comparisons);
            
             start = System.nanoTime(); // get starting time
             Sorting.mergeSort(mergeData);
-            end = System.nanoTime(); // get starting time
+            end = System.nanoTime(); // get ending time
             elapsed = (end - start)/1000000;
             System.out.println("Merge elapsed time is " + elapsed + " ms");
             System.out.println("Comparisons are " + Sorting.comparisons);

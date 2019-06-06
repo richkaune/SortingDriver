@@ -67,7 +67,8 @@ public class Sorting
                 comparisons = 0;
 		for (int index = 1; index < data.length; index++)
 		{
-			T key = data[index];
+                    
+                    T key = data[index];
 			int position = index;
                         
 
@@ -184,6 +185,7 @@ public class Sorting
                         }
 
 			// swap the elements
+                        comparisons++;
 			if (left < right)
 				swap(data, left, right);
 		}
@@ -249,39 +251,40 @@ public class Sorting
 		//  of the subarrays is exhausted
 		while (first1 <= last1 && first2 <= last2)
 		{
-			if (data[first1].compareTo(data[first2]) < 0)
-			{
-                                //comparisons ++;
-				temp[index] = data[first1];
-				first1++;
-			}
-			else
-			{
-                                temp[index] = data[first2];
-				first2++;
-			}
-			index++;
+                    if (data[first1].compareTo(data[first2]) < 0)
+                    {
+                            comparisons ++;
+                            temp[index] = data[first1];
+                            first1++;
+                    }
+                    else
+                    {
+                            temp[index] = data[first2];
+                            first2++;
+                    }
+                    index++;
 		}
 
 		//  Copy remaining elements from first subarray, if any
 		while (first1 <= last1)
 		{
-			temp[index] = data[first1];
-			first1++;
-			index++;
+                    temp[index] = data[first1];
+                    first1++;
+                    index++;
 		}
 
 		//  Copy remaining elements from second subarray, if any
 		while (first2 <= last2)
 		{
-			temp[index] = data[first2];
-			first2++;
-			index++;
+                    temp[index] = data[first2];
+                    first2++;
+                    index++;
 		}
 
 		//  Copy merged data into original array
 		for (index = first; index <= last; index++)
-			data[index] = temp[index];
+                    
+                    data[index] = temp[index];
 	}
 
 }
