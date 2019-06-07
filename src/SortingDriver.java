@@ -8,7 +8,11 @@
  * comparisons and total execution time of each algorithm.
  */
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * SortingDriver driver for testing an array of Integer objects with various sorts.
@@ -28,21 +32,53 @@ public class SortingDriver
     public static void main(String[] args)
     {
         // variable declaration area
-        int number = 100000;
+        int number = 1000;
         long start,end,elapsed;
         Integer[] selectionData;
         Integer[] insertionData;
         Integer[] bubbleData;
         Integer[] quickData;
         Integer[] mergeData;
+        String[] values = new String [number];
         Integer [] data = new Integer[number];
         Random generator = new Random();
+        
+        String fileName= "NonUniqueSortedSortingData.csv";
+        File file= new File(fileName);
 
-        //generate random integers and place them in the array
-        for (int i = 0; i<data.length;i++)
+        // read file contents into Integer array
+        try
         {
-            data[i] = generator.nextInt(10);
+            Scanner inputStream= new Scanner(file);
+            while(inputStream.hasNext())
+            {
+                String dataRead= inputStream.next();
+                values = dataRead.split(",");
+                //data = Integer.parseInt(values);
+                System.out.println(Arrays.toString(values));
+                // convert String array to Integer
+                for (int i = 0; i<values.length;i++)
+                {
+                    data[i] = Integer.parseInt(values[i]);
+                }
+                //System.out.println(Arrays.toString(data));
+            }
+            //System.out.println(Arrays.toString(values));
+             inputStream.close();
+         }
+        catch (FileNotFoundException e) 
+        {
+             e.printStackTrace();
         }
+        
+
+        
+        //System.out.println(Arrays.toString(values));
+        //generate random integers and place them in the array
+//        for (int i = 0; i<data.length;i++)
+//        {
+//            data[i] = generator.nextInt(10);
+//        }
 
         // deep copy the data for each sort
         selectionData = data.clone();
@@ -58,7 +94,7 @@ public class SortingDriver
 
         // access Selection sort and display comparisons and elapsed time
         start = System.currentTimeMillis(); // get starting time
-        Sorting.selectionSort(selectionData);
+        //Sorting.selectionSort(selectionData);
         end = System.currentTimeMillis(); // get ending time
         elapsed = end - start;
         System.out.println("Selection elapsed time is " + elapsed + " ms");
@@ -66,7 +102,7 @@ public class SortingDriver
 
         // access Insertion sort and display comparisons and elapsed time
         start = System.currentTimeMillis(); // get starting time
-        Sorting.insertionSort(insertionData);
+        //Sorting.insertionSort(insertionData);
         end = System.currentTimeMillis(); // get ending time
         elapsed = end - start;
         System.out.println("Insertion elapsed time is " + elapsed + " ms");
@@ -74,7 +110,7 @@ public class SortingDriver
 
         // access Bubble sort and display comparisons and elapsed time
         start = System.currentTimeMillis(); // get starting time
-        Sorting.bubbleSort(bubbleData);
+        //Sorting.bubbleSort(bubbleData);
         end = System.currentTimeMillis(); // get ending time
         elapsed = end - start;
         System.out.println("Bubble elapsed time is " + elapsed + " ms");
@@ -82,7 +118,7 @@ public class SortingDriver
 
         // access Quick sort and display comparisons and elapsed time
         start = System.nanoTime(); // get starting time
-        Sorting.quickSort(quickData);
+        //Sorting.quickSort(quickData);
         end = System.nanoTime(); // get ending time
         elapsed = (end - start)/1000000;
         System.out.println("Quick elapsed time is " + elapsed + " ms");
@@ -90,7 +126,7 @@ public class SortingDriver
 
         // access Merge sort and display comparisons and elapsed time
         start = System.nanoTime(); // get starting time
-        Sorting.mergeSort(mergeData);
+        //Sorting.mergeSort(mergeData);
         end = System.nanoTime(); // get ending time
         elapsed = (end - start)/1000000;
         System.out.println("Merge elapsed time is " + elapsed + " ms");
@@ -101,5 +137,7 @@ public class SortingDriver
 //                    System.out.print(element + " ");
 //            System.out.println(" ");
     }
+    
+    
 }
 
